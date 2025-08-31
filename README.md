@@ -38,7 +38,6 @@ This in nothing big but a a vary exciting project , this is a multipurpose contr
 
 <img width="1920" height="1080" alt="Screenshot from 2025-08-31 17-45-51" src="https://github.com/user-attachments/assets/b7458efb-fe4d-455d-abf0-8807e37fb401" />
 
-<img width="1920" height="1080" alt="Screenshot from 2025-08-31 17-45-51" src="https://github.com/user-attachments/assets/371e43ca-15f3-42c8-ac5e-bd6af9e2a5da" />
 
 <img width="1588" height="976" alt="Screenshot from 2025-08-31 18-46-28" src="https://github.com/user-attachments/assets/56f59c40-19c0-49bb-bedb-18c59956360c" />
 
