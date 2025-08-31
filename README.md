@@ -36,14 +36,15 @@ This in nothing big but a a vary exciting project , this is a multipurpose contr
 
 <img width="1920" height="1080" alt="Screenshot from 2025-08-31 17-45-43" src="https://github.com/user-attachments/assets/5352e62a-da3c-4457-98cd-6f756585eed1" />
 
-![Uploading Screenshot from 2025-08-31 17-45-51.png…]()
+<img width="1920" height="1080" alt="Screenshot from 2025-08-31 17-45-51" src="https://github.com/user-attachments/assets/b7458efb-fe4d-455d-abf0-8807e37fb401" />
 
-![Uploading Screenshot from 2025-08-31 18-46-28.png…]()
+<img width="1920" height="1080" alt="Screenshot from 2025-08-31 17-45-51" src="https://github.com/user-attachments/assets/371e43ca-15f3-42c8-ac5e-bd6af9e2a5da" />
 
-![Uploading Screenshot from 2025-08-31 18-46-35.png…]()
+<img width="1588" height="976" alt="Screenshot from 2025-08-31 18-46-28" src="https://github.com/user-attachments/assets/56f59c40-19c0-49bb-bedb-18c59956360c" />
 
-![Uploading Screenshot from 2025-08-31 18-46-41.png…]()
+<img width="1588" height="976" alt="Screenshot from 2025-08-31 18-46-35" src="https://github.com/user-attachments/assets/124e6cf1-fd59-402e-b033-7126a3aeffab" />
 
+<img width="1588" height="976" alt="Screenshot from 2025-08-31 18-46-41" src="https://github.com/user-attachments/assets/df0f785d-d39c-4946-a9d3-3a20d0fce78a" />
 
 # BOM
 
@@ -62,6 +63,8 @@ PCBA BY JLCPCB - 5 - 114.42 INCLUDING SHIPPING($20 Basic) AND A COUPON OF $9
   > 4x Mounting Holes
 > 
 3D Pinted Parts - By Printing Legion
+
+<img width="1909" height="703" alt="Screenshot from 2025-08-31 14-13-52" src="https://github.com/user-attachments/assets/b9819b4f-8545-4314-a357-37de70853da7" />
 
 
 TOTAL SHIPPING WITH ALL PARTS INCLUDING PCBA WILL BE $115 , `IDK WHY IS IT THIS MUCH COSTLY , IT IS JUST 78 FOR MY FRIEND IN US`
