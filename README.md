@@ -24,13 +24,25 @@ This in nothing big but a a vary exciting project , this is a multipurpose contr
 
 # Images
 
+<img width="1382" height="825" alt="Screenshot from 2025-08-31 12-53-37" src="https://github.com/user-attachments/assets/f5ca4587-f996-4442-80e1-09270814bdc2" />
 
+<img width="453" height="317" alt="Screenshot from 2025-08-31 12-57-44" src="https://github.com/user-attachments/assets/992dc25c-2b93-406b-8659-5a42d619c88c" />
 
+<img width="1164" height="802" alt="Screenshot from 2025-08-31 13-04-34" src="https://github.com/user-attachments/assets/9f060b8e-546a-4043-ab6f-d4a781ef2a21" />
 
+<img width="1920" height="1080" alt="Screenshot from 2025-08-31 16-46-34" src="https://github.com/user-attachments/assets/32f9c5d5-ff44-4f36-908f-7738b231fa89" />
 
+<img width="1920" height="1080" alt="Screenshot from 2025-08-31 16-46-46" src="https://github.com/user-attachments/assets/5d198bad-4bc8-4e95-a04c-75731ccdec18" />
 
+<img width="1920" height="1080" alt="Screenshot from 2025-08-31 17-45-43" src="https://github.com/user-attachments/assets/5352e62a-da3c-4457-98cd-6f756585eed1" />
 
+![Uploading Screenshot from 2025-08-31 17-45-51.png…]()
 
+![Uploading Screenshot from 2025-08-31 18-46-28.png…]()
+
+![Uploading Screenshot from 2025-08-31 18-46-35.png…]()
+
+![Uploading Screenshot from 2025-08-31 18-46-41.png…]()
 
 
 # BOM
