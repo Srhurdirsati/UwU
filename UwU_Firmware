@@ -1,0 +1,165 @@
+#include <Arduino.h>
+#include <Adafruit_NeoPixel.h>
+#include "HID-Project.h"   // Install HID-Project library for USB HID support
+
+// --- Pin Mapping from schematic ---
+#define PIN_SW   2   // Switch (D1, P27_A1_D1)
+#define PIN_A    3   // Encoder A (D2, P28_A2_D2)
+#define PIN_B    4   // Encoder B (D3, P29_A3_D3)
+#define PIN_LED  9   // WS2812B DIN (D8_SCK)
+
+// --- RGB LED Strip Setup ---
+Adafruit_NeoPixel strip(4, PIN_LED, NEO_GRB + NEO_KHZ800);
+
+// --- Modes ---
+enum Mode { BRIGHTNESS, MEDIA, RGB };
+volatile Mode mode = BRIGHTNESS;
+
+// --- Click Tracking ---
+volatile int clickCount = 0;
+unsigned long lastClickTime = 0;
+
+// --- Encoder Rotation ---
+volatile int encoderPos = 0;
+
+// --- RGB Animations ---
+int rgbMode = 0; // which RGB effect is active
+uint8_t brightnessRGB = 100;
+
+// ================== INTERRUPTS ==================
+void IRAM_ATTR handleRotate() {
+  static unsigned long last = 0;
+  unsigned long now = millis();
+  if (now - last < 2) return; // debounce
+  last = now;
+
+  bool b = digitalRead(PIN_B);
+  if (b) encoderPos++;   // Clockwise
+  else encoderPos--;     // Counter-Clockwise
+}
+
+void IRAM_ATTR handleClick() {
+  static unsigned long last = 0;
+  unsigned long now = millis();
+  if (now - last < 50) return; // debounce
+  last = now;
+
+  clickCount++;
+  lastClickTime = now;
+}
+
+// ================== MODE LED FEEDBACK ==================
+void setModeLEDs() {
+  strip.clear();
+  if (mode == BRIGHTNESS) {
+    strip.fill(strip.Color(255, 255, 0), 0, 4); // Yellow
+  } else if (mode == MEDIA) {
+    strip.fill(strip.Color(0, 0, 255), 0, 4);   // Blue
+  } else if (mode == RGB) {
+    strip.fill(strip.Color(0, 255, 0), 0, 4);   // Green
+  }
+  strip.setBrightness(brightnessRGB);
+  strip.show();
+}
+
+// ================== RGB EFFECTS ==================
+void rgbEffect(int effect) {
+  static uint16_t j = 0;
+  if (effect == 0) {
+    // Static rainbow cycle
+    for (int i = 0; i < strip.numPixels(); i++) {
+      int pixelHue = (i * 65536L / strip.numPixels() + j) & 65535;
+      strip.setPixelColor(i, strip.gamma32(strip.ColorHSV(pixelHue)));
+    }
+    strip.show();
+    j += 256;
+  } else if (effect == 1) {
+    // Breathing effect
+    static int fade = 0, dir = 1;
+    fade += dir * 5;
+    if (fade <= 10 || fade >= 255) dir = -dir;
+    strip.fill(strip.Color(fade, 0, fade), 0, 4);
+    strip.show();
+  } else if (effect == 2) {
+    // Random sparkle
+    strip.clear();
+    strip.setPixelColor(random(4), strip.Color(random(255), random(255), random(255)));
+    strip.show();
+  }
+}
+
+// ================== SETUP ==================
+void setup() {
+  pinMode(PIN_A, INPUT_PULLUP);
+  pinMode(PIN_B, INPUT_PULLUP);
+  pinMode(PIN_SW, INPUT_PULLUP);
+
+  attachInterrupt(digitalPinToInterrupt(PIN_A), handleRotate, FALLING);
+  attachInterrupt(digitalPinToInterrupt(PIN_SW), handleClick, FALLING);
+
+  strip.begin();
+  strip.show();
+
+  Consumer.begin(); // USB HID media controls
+  Keyboard.begin(); // USB HID keyboard keys
+
+  setModeLEDs();
+  Serial.begin(115200);
+  Serial.println("UwU Controller Started!");
+}
+
+// ================== LOOP ==================
+void loop() {
+  // ---- Click Handling ----
+  if (clickCount > 0 && millis() - lastClickTime > 400) {
+    if (clickCount == 3) {
+      // Change mode
+      mode = (Mode)((mode + 1) % 3);
+      Serial.print("Mode changed to: "); Serial.println(mode);
+      setModeLEDs();
+    } else if (clickCount == 2) {
+      // Double click actions
+      if (mode == MEDIA) {
+        Consumer.write(MEDIA_PLAY_PAUSE);
+        Serial.println("Play/Pause");
+      } else if (mode == BRIGHTNESS) {
+        // Example: Use F1 as monitor switch hotkey (adjust as per OS)
+        Keyboard.press(KEY_F1);
+        delay(50);
+        Keyboard.releaseAll();
+        Serial.println("Switch Monitor");
+      }
+    } else if (clickCount == 4 && mode == RGB) {
+      rgbMode = (rgbMode + 1) % 3;
+      Serial.print("RGB effect changed to: "); Serial.println(rgbMode);
+    }
+    clickCount = 0;
+  }
+
+  // ---- Encoder Rotation ----
+  if (encoderPos != 0) {
+    if (mode == MEDIA) {
+      if (encoderPos > 0) Consumer.write(MEDIA_VOLUME_UP);
+      else Consumer.write(MEDIA_VOLUME_DOWN);
+      Serial.println("Volume change");
+    } else if (mode == BRIGHTNESS) {
+      if (encoderPos > 0) Keyboard.press(KEY_UP_ARROW);
+      else Keyboard.press(KEY_DOWN_ARROW);
+      delay(50);
+      Keyboard.releaseAll();
+      Serial.println("Brightness change");
+    } else if (mode == RGB) {
+      brightnessRGB = constrain(brightnessRGB + encoderPos * 5, 10, 255);
+      strip.setBrightness(brightnessRGB);
+      strip.show();
+      Serial.print("RGB Brightness: "); Serial.println(brightnessRGB);
+    }
+    encoderPos = 0;
+  }
+
+  // ---- RGB Effects ----
+  if (mode == RGB) {
+    rgbEffect(rgbMode);
+    delay(20); // control animation speed
+  }
+}
