@@ -1,6 +1,6 @@
 # Project - UwU : The Multipurpose Controller
 
-### Total Time Spent - 
+### Total Time Spent - 30.6 Hours IN  2.5 Days
 
 ## August 29 : Planning [6 Hours]
 
@@ -45,6 +45,14 @@ I didn't stop , i also finsished making the top portion too
 
 <img width="1920" height="1080" alt="Screenshot from 2025-08-31 17-45-43" src="https://github.com/user-attachments/assets/cac77eb7-9945-41e1-81ea-0f475a83b424" />
 
+## GITHUB PLUS JLCPCB WORK [5 Hours]
 
-The work wasn't finished here , the project too needed a github repo along with some time for the jlcpcb work......
+The work wasn't finished here , the project too needed a github repo along with some time for the jlcpcb work. This took way too much time due to my slow network and a potato pc ! 
+
+> Repo Created
+> JLCPCB Work Completed
+
+<img width="1909" height="703" alt="Screenshot from 2025-08-31 14-13-52" src="https://github.com/user-attachments/assets/4aab5fc5-3b77-4f60-bf02-15812da68a9a" />
+
+
 
